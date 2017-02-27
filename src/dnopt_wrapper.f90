@@ -206,8 +206,6 @@ contains
              file(j:j) = name(j)
           end do
           iPrt = newunit()
-          !close (iPrt)
-          !open  (iPrt, file=trim(file), status='unknown', position='append')
           call dnFileOpenAppend(iPrt, trim(file))
        end if
     end if
@@ -707,7 +705,7 @@ contains
     iSumm  = iw(13)
 
     close(iPrint)   ! print file
-    close(iSumm)   ! summary file
+    if (iSumm /= 6) close(iSumm)   ! summary file
 
     call dnEnd(iPrint, iSumm, cw, lencw, iw, leniw, rw, lenrw)
 
